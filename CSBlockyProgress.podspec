@@ -9,7 +9,7 @@ Pod::Spec.new do |s|
                    DESC
 
   s.homepage     = "https://github.com/chrisfsampaio/CSBlockyProgress"
-  s.license      = 'MIT (example)'
+  s.license      = 'MIT'
   s.author             = { "Christian Sampaio" => "christian.fsampaio@gmail.com" }
   s.platform     = :ios, '7.0'
 
