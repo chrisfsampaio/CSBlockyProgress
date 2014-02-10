@@ -48,13 +48,14 @@
                         change:(NSDictionary *)change
                        context:(void *)context
 {
-    BOOL shouldCallBlock = ([keyPath isEqualToString:NSStringFromSelector(@selector(completedUnitCount))]
-                            && object == self.observedProgress
-                            && self.progressChangeHandler);
+    BOOL observedProgressChange = ([keyPath isEqualToString:NSStringFromSelector(@selector(completedUnitCount))]
+                                   && object == self.observedProgress
+                                   );
     
-    if (shouldCallBlock)
+    if (observedProgressChange)
     {
-        self.progressChangeHandler(self.observedProgress.totalUnitCount, self.observedProgress.completedUnitCount);
+        self.totalUnitCount = self.observedProgress.totalUnitCount;
+        self.completedUnitCount = self.observedProgress.completedUnitCount;
     }
 }
 
