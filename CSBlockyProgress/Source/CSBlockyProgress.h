@@ -12,4 +12,6 @@
 
 @property (nonatomic, copy) void(^progressChangeHandler)(int64_t totalUnitCount, int64_t completedUnitCount);
 
+- (void)observeAnotherProgress:(NSProgress *)progress;
+
 @end

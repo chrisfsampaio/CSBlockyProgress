@@ -8,6 +8,12 @@
 
 #import "CSBlockyProgress.h"
 
+@interface CSBlockyProgress()
+
+@property (nonatomic, weak) NSProgress *observedProgress;
+
+@end
+
 @implementation CSBlockyProgress
 
 - (void)setCompletedUnitCount:(int64_t)completedUnitCount
@@ -17,6 +23,39 @@
         self.progressChangeHandler(self.totalUnitCount, completedUnitCount);
     }
     [super setCompletedUnitCount:completedUnitCount];
+}
+
+- (void)observeAnotherProgress:(NSProgress *)progress
+{
+    self.observedProgress = progress;
+    
+    [progress addObserver:self
+               forKeyPath:NSStringFromSelector(@selector(completedUnitCount))
+                  options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld)
+                  context:nil];
+}
+
+- (void)dealloc
+{
+    [self.observedProgress removeObserver:self
+                               forKeyPath:NSStringFromSelector(@selector(completedUnitCount))];
+}
+
+#pragma mark - KVO
+
+- (void)observeValueForKeyPath:(NSString *)keyPath
+                      ofObject:(id)object
+                        change:(NSDictionary *)change
+                       context:(void *)context
+{
+    BOOL shouldCallBlock = ([keyPath isEqualToString:NSStringFromSelector(@selector(completedUnitCount))]
+                            && object == self.observedProgress
+                            && self.progressChangeHandler);
+    
+    if (shouldCallBlock)
+    {
+        self.progressChangeHandler(self.observedProgress.totalUnitCount, self.observedProgress.completedUnitCount);
+    }
 }
 
 @end

@@ -456,6 +456,7 @@
 				AA65E9B918A96DDC006FDC10 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		AA65E9BA18A96DDC006FDC10 /* Build configuration list for PBXNativeTarget "CSBlockyProgressTests" */ = {
 			isa = XCConfigurationList;
@@ -464,6 +465,7 @@
 				AA65E9BC18A96DDC006FDC10 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
