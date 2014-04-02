@@ -28,6 +28,8 @@
 - (void)observeAnotherProgress:(NSProgress *)progress
 {
     self.observedProgress = progress;
+    self.totalUnitCount = progress.totalUnitCount;
+    self.completedUnitCount = progress.completedUnitCount;
     
     [progress addObserver:self
                forKeyPath:NSStringFromSelector(@selector(completedUnitCount))
