@@ -10,7 +10,7 @@
 
 @interface CSBlockyProgress()
 
-@property (nonatomic, weak) NSProgress *observedProgress;
+@property (nonatomic, strong) NSProgress *observedProgress;
 
 @end
 
@@ -31,6 +31,7 @@
     {
         [self.observedProgress removeObserver:self
                                    forKeyPath:NSStringFromSelector(@selector(completedUnitCount))];
+        self.observedProgress = nil;
     }
     self.observedProgress = progress;
     self.totalUnitCount = progress.totalUnitCount;
@@ -48,6 +49,7 @@
     {
         [self.observedProgress removeObserver:self
                                    forKeyPath:NSStringFromSelector(@selector(completedUnitCount))];
+        self.observedProgress = nil;
     }
 }
 
