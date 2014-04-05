@@ -44,8 +44,11 @@
 
 - (void)dealloc
 {
-    [self.observedProgress removeObserver:self
-                               forKeyPath:NSStringFromSelector(@selector(completedUnitCount))];
+    if (self.observedProgress)
+    {
+        [self.observedProgress removeObserver:self
+                                   forKeyPath:NSStringFromSelector(@selector(completedUnitCount))];
+    }
 }
 
 #pragma mark - KVO
