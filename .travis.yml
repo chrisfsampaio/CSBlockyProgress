@@ -1,2 +1,3 @@
 language: objective-c
 script: xcodebuild -project CSBlockyProgress.xcodeproj -scheme CSBlockyProgress -configuration Debug -sdk iphonesimulator clean test | xcpretty -c
+
